@@ -9,32 +9,27 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @*@using (Html.BeginForm())
-            {
-                <label>Name</label>@Html.TextBox("name") <br>
-                <label>SecondName</label>@Html.TextBox("secName") <br>
 
+        <div class="alert alert-success">
+          HTTP<strong> @ViewBag.Type</strong> request.
+        </div>
 
-            }*@
         <h4>
             Choose type of request.
         </h4>
          
-
-        
-
-
+        <label class="radio-inline"><input type="radio" name="optradio" value="POST" checked="checked">POST</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="GET">GET</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="PUT">PUT</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="DELETE">DELETE</label>
+                
 
         <h4>
             Enter your data:
         </h4>
+               
 
-        <label class="radio-inline"><input type="radio" name="optradio" value="POST" checked="checked" >POST</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="GET">GET</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="PUT">PUT</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="DELETE">DELETE</label>
-
-        <form action="/Home/Index" method="post">
+        <form id="form" action="/Home/Index" method="post">
 
             <div class="form-group">                
                 <input required="required" type="text" name="name" placeholder="Name..." class="form-control" id="name">
@@ -44,12 +39,12 @@
                 <input required="required" type="text" name="surname" placeholder="Surname..." class="form-control" id="surname">
             </div>
 
-            <button type="submit" id="SendRequest" class="btn btn-default">Send</button>
+            <button type="submit" id="SendRequest" class="btn btn-success">Send</button>
 
         </form>
     </div>
     <div class="col-md-6">
-        ff
+        
     </div>
 
 </div>

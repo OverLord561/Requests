@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace HttpRequests.Controllers
@@ -25,8 +26,9 @@ namespace HttpRequests.Controllers
         {
             string reqInfo = "Type:" + requestInfo.RequestInformationType + "  " + "Ip:"  + requestInfo.RequestInformationIp + "  " + "Url:"  + requestInfo.RequestInformationUrl + ";";
 
-            System.IO.File.AppendAllText(@"D:\1\ApriorIT\HttpRequests\HttpRequests\Content\HttpRequests.txt", reqInfo + "\n");
-
+            //System.IO.File.AppendAllText(@"D:\1\ApriorIT\HttpRequests\HttpRequests\Content\HttpRequests.txt", reqInfo + "\n");
+             //System.IO.File.AppendAllText(Server.MapPath(@"~/Content/HttpRequests.txt"), reqInfo + "\n");
+            System.IO.File.AppendAllText(HostingEnvironment.MapPath(@"~/Content/HttpRequests.txt"), reqInfo + "\n");
         }
 
 
@@ -56,7 +58,7 @@ namespace HttpRequests.Controllers
             rq.RequestInformation.Add(rqInfo);
             rq.SaveChanges();
             Write(rqInfo);
-
+            ViewBag.Type = "GET";
             return View();
         }
 
@@ -78,7 +80,7 @@ namespace HttpRequests.Controllers
             rq.SaveChanges();
 
             Write(rqInfo);
-            
+
 
             //The HTTP_X_FORWARDED_FOR header gets the IP address behind proxy servers.
             //string SourceIP = String.IsNullOrEmpty(Request.ServerVariables["HTTP_X_FORWARDED_FOR"]) ? Request.ServerVariables["REMOTE_ADDR"] : Request.ServerVariables["HTTP_X_FORWARDED_FOR"].Split(',')[0];
@@ -90,7 +92,7 @@ namespace HttpRequests.Controllers
             //{
             // Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
             //}
-            
+            ViewBag.Type = "POST";
             return View();
         }
 

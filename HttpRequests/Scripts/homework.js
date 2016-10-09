@@ -1,24 +1,19 @@
 document.body.onload = function ()
 {
+    var sendBtn = document.getElementById('SendRequest');
 
-  //  var radioBtn = document.querySelector('input[name = "optradio"]');
-   // for ( radio in radioBtn)
-   // {
-    //    radioBtn[radio].addEventListener("click", radioBtnClick);
-   // }
-    
+    sendBtn.addEventListener('click', changeTypeOfRequest);
 
-    //var btnR = document.getElementById('SendRequest');
-   // btnSubmit.addEventListener('onclick', changeTypeOfRequest);
 };
 
 
 function changeTypeOfRequest(typeOfRequest)
 {
-   // alert(typeOfRequest);
+    var form = document.getElementById('form');
+    var typeOfRequest = document.querySelector('input[name = "optradio"]:checked').value;
+
+    form.method = '';
+    form.method = typeOfRequest;
+
 };
 
-function radioBtnClick() {
-    var typeOfRequest = document.querySelector('input[name = "optradio"]:checked').value;
-    alert(typeOfRequest);
-};
