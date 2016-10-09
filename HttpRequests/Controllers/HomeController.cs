@@ -21,6 +21,7 @@ namespace HttpRequests.Controllers
         //RequestInfo rinfo = new RequestInfo();
         public RequestContext rq = new RequestContext();
         RequestInformation rqInfo = new RequestInformation();
+        MovieHouse mhInfo = new MovieHouse();
 
         public static void Write(RequestInformation requestInfo)
         {
@@ -46,31 +47,42 @@ namespace HttpRequests.Controllers
             }
 
             rqInfo.RequestInformationIp = Request.UserHostAddress;
-
-
-            // If form request type like'GET' we can get parametrs from QueryString
-            string name = "", surname = "";            
-            
-               name = Request.QueryString["name"];
-               surname = Request.QueryString["name"];
-
-
+            // Write request info to DB
             rq.RequestInformation.Add(rqInfo);
             rq.SaveChanges();
+
+            // If form request type like'GET' we can get parametrs from QueryString
+
+            if(Request.QueryString["name"]!=null )
+            {
+                mhInfo.MovieHouseName = Request.QueryString["name"];
+                mhInfo.MovieHouseTelephone = Request.QueryString["telephone"];
+                mhInfo.MovieHouseAdress = Request.QueryString["adress"];
+                mhInfo.MovieHouseId = 0;
+
+                // Write movie house info to DB
+                rq.MovieHouses.Add(mhInfo);
+                rq.SaveChanges();
+                ViewBag.Additional = "with new one";
+            }
+            
+
+            
+
+            // Write request info to file
             Write(rqInfo);
-            ViewBag.Type = "GET";
-            return View();
+
+            ViewBag.Type = "GET method"; 
+            ViewBag.Response = "home page and list of movie houses ";
+           // ViewBag.Additional = "with new one";
+            return View(rq.MovieHouses.ToList());
+       
         }
 
         [HttpPost]       
-        public ActionResult Index(string name, string surname)
+        public ActionResult Index(string name, string telephone, string adress)
         {
-            //rinfo.Type = Request.HttpMethod;
-            //rinfo.URL = Request.Url.ToString();
-            //rinfo.Ip = Request.UserHostAddress; // ::1 is for localhost
-
-
-
+            
             // data.RequestInformationId = 0;
             rqInfo.RequestInformationType = Request.HttpMethod;
             rqInfo.RequestInformationUrl = Request.Url.ToString();
@@ -79,6 +91,17 @@ namespace HttpRequests.Controllers
             rq.RequestInformation.Add(rqInfo);
             rq.SaveChanges();
 
+
+            mhInfo.MovieHouseName = name;
+            mhInfo.MovieHouseId = 0;
+            mhInfo.MovieHouseTelephone = telephone;
+            mhInfo.MovieHouseAdress = adress;
+
+            
+                rq.MovieHouses.Add(mhInfo);
+                rq.SaveChanges();
+               
+
             Write(rqInfo);
 
 
@@ -92,12 +115,14 @@ namespace HttpRequests.Controllers
             //{
             // Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
             //}
-            ViewBag.Type = "POST";
-            return View();
+
+            ViewBag.Type = "POST method";
+            ViewBag.Response = "home page and list of movie houses with new one ";
+            return View(rq.MovieHouses.ToList());
         }
 
         [HttpDelete]
-        public ActionResult Index(string name, string surname, string smt)
+        public JsonResult Index(int id)
         {
             //rinfo.Type = Request.HttpMethod;
             //rinfo.URL = Request.Url.ToString();
@@ -114,7 +139,7 @@ namespace HttpRequests.Controllers
             // Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
             //}
 
-            return View();
+            return Json("Response from Delete");
         }
 
 
@@ -127,9 +152,10 @@ namespace HttpRequests.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+			string filename = HostingEnvironment.MapPath(@"~/Content/HttpRequests.txt");
+			string contentType = MimeMapping.GetMimeMapping(filename); ;
+            string downLoadName = null;
+            return File(filename,contentType, downLoadName);
         }
     }
 }

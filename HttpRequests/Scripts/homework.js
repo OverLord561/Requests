@@ -2,6 +2,7 @@ document.body.onload = function ()
 {
     var sendBtn = document.getElementById('SendRequest');
 
+
     sendBtn.addEventListener('click', changeTypeOfRequest);
 
 };

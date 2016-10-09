@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<HttpRequests.Models.MovieHouse>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -11,17 +12,17 @@
     <div class="col-md-6">
 
         <div class="alert alert-success">
-          HTTP<strong> @ViewBag.Type</strong> request.
+          Request:<strong> @ViewBag.Type</strong> Response: @ViewBag.Response @ViewBag.Additional
         </div>
 
         <h4>
-            Choose type of request.
+            Choose type of request. All types can insert values in table.
         </h4>
+        
          
         <label class="radio-inline"><input type="radio" name="optradio" value="POST" checked="checked">POST</label>
         <label class="radio-inline"><input type="radio" name="optradio" value="GET">GET</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="PUT">PUT</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="DELETE">DELETE</label>
+        
                 
 
         <h4>
@@ -32,19 +33,59 @@
         <form id="form" action="/Home/Index" method="post">
 
             <div class="form-group">                
-                <input required="required" type="text" name="name" placeholder="Name..." class="form-control" id="name">
+                <input required="required" type="text" name="name" placeholder="Enter name..." class="form-control" id="name">
             </div>
 
             <div class="form-group">               
-                <input required="required" type="text" name="surname" placeholder="Surname..." class="form-control" id="surname">
+                <input required="required" type="text" name="telephone" placeholder="Enter telephone number..." class="form-control" id="surname">
+            </div>
+
+            <div class="form-group">
+                <input required="required" type="text" name="adress" placeholder="Enter adress..." class="form-control" id="adress">
             </div>
 
             <button type="submit" id="SendRequest" class="btn btn-success">Send</button>
 
         </form>
+        <input class="delete" type="submit" value="Delete" id="1" />
     </div>
     <div class="col-md-6">
-        
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MovieHouseName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MovieHouseTelephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MovieHouseAdress)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieHouseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieHouseTelephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieHouseAdress)
+                    </td>
+                    <td>
+                        <input class="delete" type="submit" value="Delete" id="@item.MovieHouseId" /> 
+                        @*@Html.ActionLink("Put", "Edit", new { id = item.MovieHouseId }) |
+                        
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MovieHouseId })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
 
 </div>

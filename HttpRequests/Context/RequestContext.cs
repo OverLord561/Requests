@@ -10,5 +10,6 @@ namespace HttpRequests.Context
     public class RequestContext : DbContext
     {
         public DbSet<RequestInformation> RequestInformation { get; set; }
+        public DbSet<MovieHouse> MovieHouses { get; set; }
     }
 }

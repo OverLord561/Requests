@@ -96,6 +96,9 @@ D:\1\ApriorIT\HttpRequests\HttpRequests\bin\ru\Microsoft.Owin.Security.Facebook.
 D:\1\ApriorIT\HttpRequests\HttpRequests\bin\ru\Microsoft.Owin.Security.Google.resources.dll
 D:\1\ApriorIT\HttpRequests\HttpRequests\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\1\ApriorIT\HttpRequests\HttpRequests\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.csprojResolveAssemblyReference.cache
+D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.Migrations.InitialCreate.resources
+D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.Migrations.MovieHouses.resources
+D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.csproj.GenerateResource.Cache
 D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.dll
 D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.pdb
+D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.csprojResolveAssemblyReference.cache

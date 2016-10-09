@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HttpRequests.Models.MovieHouse>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieHouseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieHouseTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieHouseAdress)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieHouseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieHouseTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieHouseAdress)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MovieHouseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MovieHouseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MovieHouseId })
+        </td>
+    </tr>
+}
+
+</table>
