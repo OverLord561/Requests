@@ -1,38 +1,25 @@
-//$(document).ready(function () {
-//    $("#1").on("click", function () {
-//        var id = $(this).context.id;
-        
-//        $.ajax({
-//            type: 'Delete',
-//            url: '/Home/Index',
-//            data: { id:id },
-//            success: function reload() {
-//                document.location.reload();
-                
-//        },
-//        error: function (data) {
-//            alert(data.x);
-//        }
-//    });
-//});
-//});
+
 $(document).ready(function () {
-    $("#1").on("click", function () {
+    $(".delete").on("click", function () {
+        var movieId = $(this).context.id;
         $.ajax({
-            url: '/Home/Index',
+            url: '/Home/Delete',
             dataType: "json",
             type: "DELETE",
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ id: 20 }),
+            data: JSON.stringify({ id: movieId }),
             async: true,
             processData: false,
             cache: false,
             success: function (data) {
+                
                 alert(data);
+                window.location = '/Home/Index';
             },
             error: function (xhr) {
                 alert('error');
             }
         });
     });
+
 });

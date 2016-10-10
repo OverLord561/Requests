@@ -101,4 +101,3 @@ D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.Migrations.MovieH
 D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.csproj.GenerateResource.Cache
 D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.dll
 D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.pdb
-D:\1\ApriorIT\HttpRequests\HttpRequests\obj\Debug\HttpRequests.csprojResolveAssemblyReference.cache

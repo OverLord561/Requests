@@ -23,7 +23,8 @@ namespace HttpRequests
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/homework.js",
-                      "~/Scripts/delete.js"
+                      "~/Scripts/delete.js",
+                       "~/Scripts/put.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

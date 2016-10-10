@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -20,7 +21,9 @@ namespace HttpRequests.Controllers
     {
         //RequestInfo rinfo = new RequestInfo();
         public RequestContext rq = new RequestContext();
+
         RequestInformation rqInfo = new RequestInformation();
+
         MovieHouse mhInfo = new MovieHouse();
 
         public static void Write(RequestInformation requestInfo)
@@ -121,26 +124,53 @@ namespace HttpRequests.Controllers
             return View(rq.MovieHouses.ToList());
         }
 
+      
         [HttpDelete]
-        public JsonResult Index(int id)
+        public JsonResult Delete(int id)
         {
-            //rinfo.Type = Request.HttpMethod;
-            //rinfo.URL = Request.Url.ToString();
-            //rinfo.Ip = Request.UserHostAddress; // ::1 is for localhost
+            rqInfo.RequestInformationType = Request.HttpMethod;
+            rqInfo.RequestInformationUrl = Request.Url.ToString();
+            rqInfo.RequestInformationIp = Request.UserHostAddress;
 
-            //The HTTP_X_FORWARDED_FOR header gets the IP address behind proxy servers.
-            //string SourceIP = String.IsNullOrEmpty(Request.ServerVariables["HTTP_X_FORWARDED_FOR"]) ? Request.ServerVariables["REMOTE_ADDR"] : Request.ServerVariables["HTTP_X_FORWARDED_FOR"].Split(',')[0];
+            rq.RequestInformation.Add(rqInfo);
+            rq.SaveChanges();
 
-            //if we do not know count of parameters
+            Write(rqInfo);
 
-            //string[] keys = Request.Form.AllKeys;
-            //for (int i = 0; i < keys.Length; i++)
-            //{
-            // Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
-            //}
+            MovieHouse moviehouse = rq.MovieHouses.Find(id);
+            rq.MovieHouses.Remove(moviehouse);
+            rq.SaveChanges();
+            
 
-            return Json("Response from Delete");
+            return Json("Data droped using DELETE REQUEST");
         }
+
+
+
+        [HttpPut]
+        public JsonResult Edit(int id)
+        {
+            rqInfo.RequestInformationType = Request.HttpMethod;
+            rqInfo.RequestInformationUrl = Request.Url.ToString();
+            rqInfo.RequestInformationIp = Request.UserHostAddress;
+
+            rq.RequestInformation.Add(rqInfo);
+            rq.SaveChanges();
+
+            Write(rqInfo);
+
+            
+            MovieHouse mhouse = rq.MovieHouses.Find(id);
+            mhouse.MovieHouseName = "Update";
+            rq.Entry(mhouse).State = EntityState.Modified;
+            rq.SaveChanges();
+            
+
+
+
+            return Json("Data updated using PUT REQUEST");
+        }
+
 
 
         public ActionResult About()
