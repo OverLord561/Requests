@@ -15,3 +15,7 @@ Type:PUT  Ip:127.0.0.1  Url:http://apriorit.local.com/Home/Edit;
 Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/Home/Index;
 Type:DELETE  Ip:127.0.0.1  Url:http://apriorit.local.com/Home/Delete;
 Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/Home/Index;
+Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/Home/Index;
+Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/RequestInformation;
+Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/RequestInformation;
+Type:GET  Ip:127.0.0.1  Url:http://apriorit.local.com/RequestInformation;
