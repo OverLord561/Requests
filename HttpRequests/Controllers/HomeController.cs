@@ -140,8 +140,6 @@ namespace HttpRequests.Controllers
             MovieHouse moviehouse = rq.MovieHouses.Find(id);
             rq.MovieHouses.Remove(moviehouse);
             rq.SaveChanges();
-            
-
             return Json("Data droped using DELETE REQUEST");
         }
 
@@ -180,7 +178,7 @@ namespace HttpRequests.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult FileRes()
         {
 			string filename = HostingEnvironment.MapPath(@"~/Content/HttpRequests.txt");
 			string contentType = MimeMapping.GetMimeMapping(filename); ;
